@@ -64,7 +64,7 @@ addResource(List, name, qty)	Insere um recurso no início ou fim da lista.	Inser
 removeResource(List, name)	Remove um recurso específico.	Remoção O(1): Após encontrar o nó, a remoção é instantânea, sem deslocamento.
 findResource(List, name)	Procura um recurso.	Busca Linear O(n), mas a flexibilidade compensa.
 
-🏝️ Desafio TechNova: Mini Game de Sobrevivência em C (Free Fire)Este é um projeto ambicioso que exige o domínio de estruturas de dados e algoritmos em C. A base para um sistema eficiente e escalável é a modularização e a escolha correta das estruturas para cada componente (Inventário, Itens, Recursos).Abaixo está o plano de implementação estruturado para o seu projeto, dividido nas três etapas propostas, utilizando C.1. 🎒 Etapa 1: Chegada à Ilha e Inventário Básico (Structs e Listas Sequenciais/Vetores)Nesta fase, o foco é estabelecer as estruturas de dados fundamentais e a lógica de interação básica.A. Estrutura de Dados Base (Item.h)Utilizaremos structs para modelar os itens e o inventário.C// item.h
+Desafio TechNova: Mini Game de Sobrevivência em C (Free Fire)Este é um projeto ambicioso que exige o domínio de estruturas de dados e algoritmos em C. A base para um sistema eficiente e escalável é a modularização e a escolha correta das estruturas para cada componente (Inventário, Itens, Recursos).Abaixo está o plano de implementação estruturado para o seu projeto, dividido nas três etapas propostas, utilizando C.1. 🎒 Etapa 1: Chegada à Ilha e Inventário Básico (Structs e Listas Sequenciais/Vetores)Nesta fase, o foco é estabelecer as estruturas de dados fundamentais e a lógica de interação básica.A. Estrutura de Dados Base (Item.h)Utilizaremos structs para modelar os itens e o inventário.C// item.h
 #define MAX_INVENTORY_SIZE 20 // Limite da mochila
 
 // Define as categorias de itens
@@ -90,7 +90,7 @@ typedef struct {
     int count;                      // Contador de itens atuais
 } Inventory;
 
-🏝️ Desafio TechNova: Mini Game de Sobrevivência em C (Free Fire)Este é um projeto ambicioso que exige o domínio de estruturas de dados e algoritmos em C. A base para um sistema eficiente e escalável é a modularização e a escolha correta das estruturas para cada componente (Inventário, Itens, Recursos).Abaixo está o plano de implementação estruturado para o seu projeto, dividido nas três etapas propostas, utilizando C.1. 🎒 Etapa 1: Chegada à Ilha e Inventário Básico (Structs e Listas Sequenciais/Vetores)Nesta fase, o foco é estabelecer as estruturas de dados fundamentais e a lógica de interação básica.A. Estrutura de Dados Base (Item.h)Utilizaremos structs para modelar os itens e o inventário.C// item.h
+ Desafio TechNova: Mini Game de Sobrevivência em C (Free Fire)Este é um projeto ambicioso que exige o domínio de estruturas de dados e algoritmos em C. A base para um sistema eficiente e escalável é a modularização e a escolha correta das estruturas para cada componente (Inventário, Itens, Recursos).Abaixo está o plano de implementação estruturado para o seu projeto, dividido nas três etapas propostas, utilizando C.1. 🎒 Etapa 1: Chegada à Ilha e Inventário Básico (Structs e Listas Sequenciais/Vetores)Nesta fase, o foco é estabelecer as estruturas de dados fundamentais e a lógica de interação básica.A. Estrutura de Dados Base (Item.h)Utilizaremos structs para modelar os itens e o inventário.C// item.h
 #define MAX_INVENTORY_SIZE 20 // Limite da mochila
 
 // Define as categorias de itens
