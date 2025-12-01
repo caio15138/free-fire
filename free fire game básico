@@ -1,0 +1,164 @@
+Etapa 1:
+Chegada à Ilha e Inventário Básico (Structs e Listas Sequenciais/Vetores)
+
+A. Estrutura de Dados Base 
+
+/ item.h
+#define MAX_INVENTORY_SIZE 20 // Limite da mochila
+
+// Define as categorias de itens
+typedef enum {
+    FOOD,        // Alimentos (Cura, Stamina)
+    WEAPON,      // Armas (Dano, Alcance)
+    TOOL,        // Ferramentas (Construção, Coleta)
+    PRIORITY_ITEM // Itens Chave para Fuga
+} ItemType;
+
+// Estrutura de um Item genérico
+typedef struct {
+    int id;
+    char name[50];
+    ItemType type;
+    int weight; // Peso ou volume (para controle de capacidade)
+    int value;  // Valor de uso (ex: dano da arma, cura do alimento)
+} Item;
+
+// Estrutura do Inventário (Lista Sequencial/Vetor)
+typedef struct {
+    Item items[MAX_INVENTORY_SIZE]; // O vetor armazena os itens
+    int count;                      // Contador de itens atuais
+} Inventory;
+
+B. Implementação da Lógica de Inventário
+
+Função	                   Descrição                                                                        	Estrutura
+initializeInventory()	    Inicializa o count para 0.	                                                        Inventory
+addItem(Inv, Item)      	Adiciona um item, verificando se a capacidade (MAX_INVENTORY_SIZE) foi atingida.	  Vetor (Lista Seq.)
+removeItem(Inv, id)      	Remove um item por ID.	                                                            Busca Linear + Deslocamento de elementos
+displayInventory(Inv)	    Mostra todos os itens e a capacidade usada.                                         Loop Simples
+
+
+ Etapa 2: Coleta de Recursos e Otimização (Listas Encadeadas e Busca Binária)
+Nesta fase, o desafio é comparar a eficiência do vetor (Inventário) com uma Lista Encadeada para os recursos coletados e introduzir uma busca otimizada.
+
+A. Estrutura de Dados para Recursos (Resource.h)
+
+// resource.h
+// Estrutura do Nó da Lista Encadeada
+typedef struct ResourceNode {
+    char name[50];
+    int quantity;
+    struct ResourceNode *next;
+} ResourceNode;
+
+// Estrutura da Lista Encadeada
+typedef struct {
+    ResourceNode *head;
+    int size;
+} ResourceList; 
+
+B. Implementação da Lógica de Recursos
+
+Função	Descrição	Vantagem da Lista Encadeada
+addResource(List, name, qty)	Insere um recurso no início ou fim da lista.	Inserção O(1) ou O(n): Não exige deslocamento na memória como um vetor.
+removeResource(List, name)	Remove um recurso específico.	Remoção O(1): Após encontrar o nó, a remoção é instantânea, sem deslocamento.
+findResource(List, name)	Procura um recurso.	Busca Linear O(n), mas a flexibilidade compensa.
+
+🏝️ Desafio TechNova: Mini Game de Sobrevivência em C (Free Fire)Este é um projeto ambicioso que exige o domínio de estruturas de dados e algoritmos em C. A base para um sistema eficiente e escalável é a modularização e a escolha correta das estruturas para cada componente (Inventário, Itens, Recursos).Abaixo está o plano de implementação estruturado para o seu projeto, dividido nas três etapas propostas, utilizando C.1. 🎒 Etapa 1: Chegada à Ilha e Inventário Básico (Structs e Listas Sequenciais/Vetores)Nesta fase, o foco é estabelecer as estruturas de dados fundamentais e a lógica de interação básica.A. Estrutura de Dados Base (Item.h)Utilizaremos structs para modelar os itens e o inventário.C// item.h
+#define MAX_INVENTORY_SIZE 20 // Limite da mochila
+
+// Define as categorias de itens
+typedef enum {
+    FOOD,        // Alimentos (Cura, Stamina)
+    WEAPON,      // Armas (Dano, Alcance)
+    TOOL,        // Ferramentas (Construção, Coleta)
+    PRIORITY_ITEM // Itens Chave para Fuga
+} ItemType;
+
+// Estrutura de um Item genérico
+typedef struct {
+    int id;
+    char name[50];
+    ItemType type;
+    int weight; // Peso ou volume (para controle de capacidade)
+    int value;  // Valor de uso (ex: dano da arma, cura do alimento)
+} Item;
+
+// Estrutura do Inventário (Lista Sequencial/Vetor)
+typedef struct {
+    Item items[MAX_INVENTORY_SIZE]; // O vetor armazena os itens
+    int count;                      // Contador de itens atuais
+} Inventory;
+
+🏝️ Desafio TechNova: Mini Game de Sobrevivência em C (Free Fire)Este é um projeto ambicioso que exige o domínio de estruturas de dados e algoritmos em C. A base para um sistema eficiente e escalável é a modularização e a escolha correta das estruturas para cada componente (Inventário, Itens, Recursos).Abaixo está o plano de implementação estruturado para o seu projeto, dividido nas três etapas propostas, utilizando C.1. 🎒 Etapa 1: Chegada à Ilha e Inventário Básico (Structs e Listas Sequenciais/Vetores)Nesta fase, o foco é estabelecer as estruturas de dados fundamentais e a lógica de interação básica.A. Estrutura de Dados Base (Item.h)Utilizaremos structs para modelar os itens e o inventário.C// item.h
+#define MAX_INVENTORY_SIZE 20 // Limite da mochila
+
+// Define as categorias de itens
+typedef enum {
+    FOOD,        // Alimentos (Cura, Stamina)
+    WEAPON,      // Armas (Dano, Alcance)
+    TOOL,        // Ferramentas (Construção, Coleta)
+    PRIORITY_ITEM // Itens Chave para Fuga
+} ItemType;
+
+// Estrutura de um Item genérico
+typedef struct {
+    int id;
+    char name[50];
+    ItemType type;
+    int weight; // Peso ou volume (para controle de capacidade)
+    int value;  // Valor de uso (ex: dano da arma, cura do alimento)
+} Item;
+
+// Estrutura do Inventário (Lista Sequencial/Vetor)
+typedef struct {
+    Item items[MAX_INVENTORY_SIZE]; // O vetor armazena os itens
+    int count;                      // Contador de itens atuais
+} Inventory;
+B. Implementação da Lógica de Inventário (inventory.c)Usamos funções para gerenciar a lista sequencial (o vetor items).FunçãoDescriçãoEstruturainitializeInventory()Inicializa o count para 0.InventoryaddItem(Inv, Item)Adiciona um item, verificando se a capacidade (MAX_INVENTORY_SIZE) foi atingida.Vetor (Lista Seq.)removeItem(Inv, id)Remove um item por ID.Busca Linear + Deslocamento de elementosdisplayInventory(Inv)Mostra todos os itens e a capacidade usada.Loop SimplesC. Desafio da Fase: Busca Linear e Ordenação SimplesBusca Linear: Implementar a busca de um item por name ou id percorrendo o vetor (removeItem usará isso).Ordenação Simples (Insertion Sort): Implementar um algoritmo simples para ordenar o inventário por id após a inicialização.2. 🌳 Etapa 2: Coleta de Recursos e Otimização (Listas Encadeadas e Busca Binária)Nesta fase, o desafio é comparar a eficiência do vetor (Inventário) com uma Lista Encadeada para os recursos coletados e introduzir uma busca otimizada.A. Estrutura de Dados para Recursos (Resource.h)Para recursos (madeira, pedra, metal), que são coletados e descartados de forma mais dinâmica, uma Lista Encadeada é mais eficiente, pois evita o deslocamento de elementos na memória.C// resource.h
+// Estrutura do Nó da Lista Encadeada
+typedef struct ResourceNode {
+    char name[50];
+    int quantity;
+    struct ResourceNode *next;
+} ResourceNode;
+
+// Estrutura da Lista Encadeada
+typedef struct {
+    ResourceNode *head;
+    int size;
+} ResourceList;
+
+B. Implementação da Lógica de Recursos (resource.c)FunçãoDescriçãoVantagem da Lista EncadeadaaddResource(List, name, qty)Insere um recurso no início ou fim da lista.Inserção O(1) ou O(n): Não exige deslocamento na memória como um vetor.removeResource(List, name)Remove um recurso específico.Remoção O(1): Após encontrar o nó, a remoção é instantânea, sem deslocamento.findResource(List, name)Procura um recurso.Busca Linear O(n), mas a flexibilidade compensa.C. Desafio da Fase: Busca Binária em Vetores OrdenadosPara o Inventário de Itens (que é um vetor), se mantivermos ele sempre ordenado (por id ou name), podemos usar a Busca Binária.Pré-requisito: O inventário deve estar ordenado.Busca Binária: Implementar uma função searchItem(Inventory, name) que utiliza a busca binária.$$O(log \, n) < O(n)$$Vantagem: Se o Inventário for grande, a Busca Binária é drasticamente mais rápida que a Busca Linear.3. 🗼 Etapa 3: Estratégia de Fuga e Otimização Avançada (Selection Sort e Torre de Fuga)A fase final exige a aplicação de algoritmos mais complexos para a organização do inventário e a construção da estrutura de fuga.A. Ordenação Avançada: Selection Sort por PrioridadeImplementaremos o Selection Sort para ordenar o inventário do jogador com base em um critério estratégico: Prioridade ou Tipo.Cenário: O jogador precisa organizar o inventário para ter os itens de cura (FOOD) ou os itens de fuga (PRIORITY_ITEM) no topo.Seleção: A função sortInventoryByPriority(Inventory) implementará o Selection Sort, buscando repetidamente o item de maior prioridade e trocando-o para a posição correta.Critério de OrdenaçãoDescriçãoPrioridadeEnumere as prioridades: PRIORITY_ITEM (4) > WEAPON (3) > FOOD (2) > TOOL (1).AlgoritmoSelection Sort O(n²): É simples de implementar e adequado para o tamanho limitado do inventário (MAX_INVENTORY_SIZE = 20).B. Construção Lógica da Torre de Fuga (Integração)
+
+// Lógica da Torre de Fuga (escape.c)
+#define ESCAPE_ITEM_ID 99
+#define WOOD_NEEDED 50
+#define METAL_NEEDED 30
+
+void attemptEscape(Inventory *inv, ResourceList *res) {
+    // 1. Verificar o Item Chave (Busca Binária no Inventário)
+    // Se o item de fuga (id=99) estiver presente, procede.
+    int hasKeyItem = searchItem(inv, ESCAPE_ITEM_ID); 
+
+    if (!hasKeyItem) {
+        printf("FALHA: O item chave de fuga nao foi encontrado no inventario!\n");
+        return;
+    }
+
+    // 2. Verificar Recursos (Busca na Lista Encadeada de Recursos)
+    ResourceNode *wood = findResource(res, "Madeira");
+    ResourceNode *metal = findResource(res, "Metal");
+
+    if (wood && wood->quantity >= WOOD_NEEDED && metal && metal->quantity >= METAL_NEEDED) {
+        // Sucesso na Fuga!
+        printf("\n*** VITORIA! ***\n");
+        printf("Todos os recursos e o item chave foram coletados. A Torre de Fuga esta completa!\n");
+    } else {
+        // Falha por falta de recursos
+        printf("\nFALHA: Recursos insuficientes para a Torre de Fuga.\n");
+        printf("Madeira: %d/%d, Metal: %d/%d\n", 
+               wood ? wood->quantity : 0, WOOD_NEEDED, 
+               metal ? metal->quantity : 0, METAL_NEEDED);
+    }
+}
